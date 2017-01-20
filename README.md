@@ -19,10 +19,13 @@ Infinite thanks for all the curation work done by Denny Britz and by providing e
 - Learning and Planning (WIP)
 - Exploration and Exploitation (WIP)
 
-### List of Implemented Algorithms (in parenthesis Denny Britz solution, in bracket my implementation)
-
-- [Dynamic Programming Policy Evaluation](DP/Policy Evaluation Solution.ipynb) 
+### List of Implemented Algorithms (my solution)
 - [Dynamic Programming Policy Evaluation](DP/policyEval.py) 
+- [Dynamic Programming Policy Iteration](DP/policyIteration.py)
+- [Dynamic Programming Value Iteration](DP/valueIteration.py)
+
+### List of Implemented Algorithms (orignal solution from Denny Britz)
+- [Dynamic Programming Policy Evaluation](DP/Policy Evaluation Solution.ipynb) 
 - [Dynamic Programming Policy Iteration](DP/Policy Iteration Solution.ipynb)
 - [Dynamic Programming Value Iteration](DP/Value Iteration Solution.ipynb)
 - [Monte Carlo Prediction](MC/MC Prediction Solution.ipynb)
