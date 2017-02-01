@@ -1,15 +1,17 @@
 import numpy as np
 import sys
 if "../" not in sys.path:
-  sys.path.append("../") 
+  sys.path.append("../")
 from lib.envs.blackjack import BlackjackEnv
 
 env = BlackjackEnv()
+
 
 def print_observation(observation):
     score, dealer_score, usable_ace = observation
     print("Player Score: {} (Usable Ace: {}), Dealer Score: {}".format(
           score, usable_ace, dealer_score))
+
 
 def strategy(observation):
     score, dealer_score, usable_ace = observation
@@ -27,4 +29,3 @@ for i_episode in range(20):
             print_observation(observation)
             print("Game end. Reward: {}\n".format(float(reward)))
             break
-a

@@ -1,16 +1,7 @@
-#!/usr/bin/env python2
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Jan 31 14:40:34 2017
-
-@author: karl
-"""
-
 import gym
 import matplotlib
 import numpy as np
 import sys
-
 from collections import defaultdict
 
 if "../" not in sys.path:
@@ -46,11 +37,39 @@ def mc_prediction(policy, env, num_episodes, discount_factor=1.0):
     
     # The final value function
     V = defaultdict(float)
-    
-    # Implement this!
 
+    for i_episode in range(num_episodes):
+
+        if i_episode % 1000 == 0:
+            print("\rEpisode {}/{}.".format(i_episode, num_episodes))
+            sys.stdout.flush()
+
+        observation = env.reset()
+        listStateVisited = set()
+        for t in range(100):
+            score, dealer_score, usable_ace = observation
+            probs = policy(observation)
+            action = np.random.choice(np.arange(len(probs)), p=probs)
+            listStateVisited.add((score, dealer_score, usable_ace))
+            observation, reward, done, _ = env.step(action)
+            if done:
+                # print_observation(observation)
+                # print("Game end. Reward: {}\n".format(float(reward)))
+                for i, state in enumerate(listStateVisited):
+                    returns_count[state] += 1
+                    returns_sum[state] += (reward * (discount_factor**i))
+                break
+    for state in returns_sum:
+        V[state] = returns_sum[state] / returns_count[state]
+    print(V)
     return V
-    
+
+
+def print_observation(observation):
+    score, dealer_score, usable_ace = observation
+    print("Player Score: {} (Usable Ace: {}), Dealer Score: {}".format(
+          score, usable_ace, dealer_score))
+
 
 def sample_policy(observation):
     """
